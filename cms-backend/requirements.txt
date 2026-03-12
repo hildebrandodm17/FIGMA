@@ -1,0 +1,45 @@
+# Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.19
+
+# Database
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.1
+
+# Auth & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==44.0.0
+
+# Storage (Cloudflare R2 / S3-compatible)
+boto3==1.35.86
+
+# Image Processing
+Pillow==11.1.0
+
+# HTML Sanitization
+bleach==6.2.0
+
+# Rate Limiting
+slowapi==0.1.9
+
+# Cache
+cachetools==5.5.1
+
+# Slug Generation
+python-slugify==8.0.4
+
+# HTTP Client (webhooks)
+httpx==0.28.1
+
+# Email
+resend==2.7.0
+
+# Configuration
+pydantic-settings==2.7.1
+pydantic[email]==2.10.4
+
+# Utils
+python-dateutil==2.9.0
