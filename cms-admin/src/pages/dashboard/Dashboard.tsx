@@ -40,7 +40,7 @@ export default function Dashboard() {
     const fetchDashboard = async () => {
       try {
         const response = await api.get('/admin/dashboard')
-        setData(response.data)
+        setData(response.data?.data ?? response.data)
       } catch {
         // silently fail — cards will show 0
         setData(null)
@@ -57,25 +57,25 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
           title="Leads Ativos"
-          value={data?.leads.ativos ?? 0}
+          value={data?.leads?.ativos ?? 0}
           icon={<Mail size={20} />}
           loading={loading}
         />
         <StatsCard
           title="Leads Respondidos"
-          value={data?.leads.respondidos ?? 0}
+          value={data?.leads?.respondidos ?? 0}
           icon={<MailCheck size={20} />}
           loading={loading}
         />
         <StatsCard
           title="Últimos 30 dias"
-          value={data?.leads.ultimos_30_dias ?? 0}
+          value={data?.leads?.ultimos_30_dias ?? 0}
           icon={<CalendarDays size={20} />}
           loading={loading}
         />
         <StatsCard
           title="Total Recebidos"
-          value={data?.leads.total ?? 0}
+          value={data?.leads?.total ?? 0}
           icon={<Inbox size={20} />}
           loading={loading}
         />
@@ -110,19 +110,19 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#9CA3AF]">Total</span>
                 <span className="text-sm font-medium text-[#F5F5F5]">
-                  {data?.posts.total ?? 0}
+                  {data?.posts?.total ?? 0}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#9CA3AF]">Publicados</span>
                 <span className="text-sm font-medium text-green-500">
-                  {data?.posts.publicados ?? 0}
+                  {data?.posts?.publicados ?? 0}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#9CA3AF]">Rascunhos</span>
                 <span className="text-sm font-medium text-yellow-500">
-                  {data?.posts.rascunhos ?? 0}
+                  {data?.posts?.rascunhos ?? 0}
                 </span>
               </div>
             </div>
@@ -146,13 +146,13 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#9CA3AF]">Total</span>
                 <span className="text-sm font-medium text-[#F5F5F5]">
-                  {data?.itens.total ?? 0}
+                  {data?.itens?.total ?? 0}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#9CA3AF]">Ativos</span>
                 <span className="text-sm font-medium text-green-500">
-                  {data?.itens.ativos ?? 0}
+                  {data?.itens?.ativos ?? 0}
                 </span>
               </div>
             </div>
