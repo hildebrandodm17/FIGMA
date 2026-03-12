@@ -58,17 +58,17 @@ api.interceptors.response.use(
     isRefreshing = true;
 
     try {
-      const { refreshToken } = useAuthStore.getState();
+      // Refresh token is sent as httpOnly cookie automatically
       const response = await axios.post(
         `${api.defaults.baseURL}/auth/refresh`,
-        { refresh_token: refreshToken },
+        {},
         { withCredentials: true }
       );
 
-      const { access_token, refresh_token: newRefreshToken } = response.data;
+      const access_token = response.data.data.access_token;
       useAuthStore.getState().setAuth({
         accessToken: access_token,
-        refreshToken: newRefreshToken,
+        refreshToken: '',
         usuario: useAuthStore.getState().usuario!,
       });
 
