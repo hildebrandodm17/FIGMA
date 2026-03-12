@@ -65,10 +65,10 @@ api.interceptors.response.use(
         { withCredentials: true }
       );
 
-      const { access_token, refresh_token } = response.data;
+      const { access_token, refresh_token: newRefreshToken } = response.data;
       useAuthStore.getState().setAuth({
         accessToken: access_token,
-        refreshToken: refresh_token,
+        refreshToken: newRefreshToken,
         usuario: useAuthStore.getState().usuario!,
       });
 

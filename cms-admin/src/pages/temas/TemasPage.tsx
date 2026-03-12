@@ -19,7 +19,6 @@ const colorFields: { key: keyof Pick<Tema, 'cor_primaria' | 'cor_secundaria' | '
 ]
 
 export default function TemasPage() {
-  const [tema, setTema] = useState<Tema | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [form, setForm] = useState({
@@ -38,7 +37,6 @@ export default function TemasPage() {
     const load = async () => {
       try {
         const data = await temaService.obter()
-        setTema(data)
         setForm({
           cor_primaria: data.cor_primaria || '#16A34A',
           cor_secundaria: data.cor_secundaria || '#0D0D0D',
@@ -66,8 +64,7 @@ export default function TemasPage() {
   const handleSave = async () => {
     setSaving(true)
     try {
-      const updated = await temaService.atualizar(form)
-      setTema(updated)
+      await temaService.atualizar(form)
       toast.success('Tema atualizado com sucesso')
     } catch {
       toast.error('Erro ao atualizar tema')

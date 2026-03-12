@@ -1,12 +1,19 @@
 import { create } from 'zustand';
 import type { Usuario } from '../types';
 
+interface AuthPayload {
+  accessToken: string;
+  refreshToken: string;
+  usuario: Usuario;
+}
+
 interface AuthState {
   usuario: Usuario | null;
   accessToken: string | null;
+  refreshToken: string | null;
   isAuthenticated: boolean;
 
-  setAuth: (token: string, usuario: Usuario) => void;
+  setAuth: (payload: AuthPayload) => void;
   logout: () => void;
   getToken: () => string | null;
 }
@@ -14,11 +21,13 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()((set, get) => ({
   usuario: null,
   accessToken: null,
+  refreshToken: null,
   isAuthenticated: false,
 
-  setAuth: (token, usuario) =>
+  setAuth: ({ accessToken, refreshToken, usuario }) =>
     set({
-      accessToken: token,
+      accessToken,
+      refreshToken,
       usuario,
       isAuthenticated: true,
     }),
@@ -26,6 +35,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
   logout: () =>
     set({
       accessToken: null,
+      refreshToken: null,
       usuario: null,
       isAuthenticated: false,
     }),

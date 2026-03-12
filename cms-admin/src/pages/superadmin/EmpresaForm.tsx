@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -64,8 +64,6 @@ export default function EmpresaForm() {
       r2_secret_access_key: '', webhook_leads: '',
     },
   })
-
-  const form = isEdit ? editForm : createForm
 
   useEffect(() => {
     if (!isEdit) return

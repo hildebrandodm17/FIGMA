@@ -50,6 +50,7 @@ export interface Usuario {
 
 export interface TokenResponse {
   access_token: string;
+  refresh_token: string;
   token_type: string;
   expira_em: number;
   usuario: Usuario;
@@ -365,6 +366,15 @@ export type GaleriaUpdate = Partial<GaleriaCreate>;
 
 // Alias for galeriaService compatibility
 export type Galeria = GaleriaItem;
+
+export type CategoriaCreate = Omit<Categoria, 'id' | 'created_at'>;
+export type CategoriaUpdate = Partial<CategoriaCreate>;
+
+export type PostCreate = Omit<Post, 'id' | 'created_at' | 'updated_at' | 'categoria'> & { categoria_id?: string };
+export type PostUpdate = Partial<PostCreate>;
+
+export type ItemCreate = Partial<Omit<Item, 'id' | 'created_at' | 'updated_at' | 'categoria'>> & { nome: string; slug: string; categoria_id?: string };
+export type ItemUpdate = Partial<ItemCreate>;
 
 export type ContatoUpdate = Partial<Omit<Contato, 'id'>>;
 

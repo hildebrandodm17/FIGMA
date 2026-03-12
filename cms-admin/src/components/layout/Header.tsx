@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, Fragment } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useEmpresa } from '../../hooks/useEmpresa'
-import { ChevronRight, LogOut, User, Menu } from 'lucide-react'
+import { ChevronRight, LogOut, Menu } from 'lucide-react'
 
 const pathLabels: Record<string, string> = {
   '': 'Dashboard',

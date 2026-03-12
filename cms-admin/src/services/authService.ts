@@ -1,10 +1,10 @@
 import api from './api';
 import { useAuthStore } from '../store/authStore';
-import type { LoginRequest, AuthResponse } from '../types';
+import type { TokenResponse } from '../types';
 
 const authService = {
-  async login(email: string, senha: string): Promise<AuthResponse> {
-    const response = await api.post<AuthResponse>('/auth/login', { email, senha });
+  async login(email: string, senha: string): Promise<TokenResponse> {
+    const response = await api.post<TokenResponse>('/auth/login', { email, senha });
     const { access_token, refresh_token, usuario } = response.data;
     useAuthStore.getState().setAuth({
       accessToken: access_token,
@@ -14,9 +14,9 @@ const authService = {
     return response.data;
   },
 
-  async refresh(): Promise<AuthResponse> {
+  async refresh(): Promise<TokenResponse> {
     const { refreshToken } = useAuthStore.getState();
-    const response = await api.post<AuthResponse>('/auth/refresh', {
+    const response = await api.post<TokenResponse>('/auth/refresh', {
       refresh_token: refreshToken,
     });
     const { access_token, refresh_token, usuario } = response.data;

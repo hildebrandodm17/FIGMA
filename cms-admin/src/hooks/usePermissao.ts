@@ -16,7 +16,7 @@ export function usePermissao(modulo: string, acao: Acao) {
     const permissoes = usuario.permissoes
     if (!permissoes || typeof permissoes !== 'object') return false
 
-    const moduloPerms = permissoes[modulo]
+    const moduloPerms = (permissoes as any)[modulo]
     if (!moduloPerms) return false
 
     // Permissões podem vir como array de strings ou como objeto

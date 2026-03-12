@@ -9,7 +9,6 @@ import type { Modulo } from '../../types'
 export default function ModulosPage() {
   const [modulos, setModulos] = useState<Modulo[]>([])
   const [loading, setLoading] = useState(true)
-  const [toggling, setToggling] = useState<string | null>(null)
   const [confirmDisable, setConfirmDisable] = useState<Modulo | null>(null)
 
   const fetchModulos = useCallback(async () => {
@@ -38,15 +37,12 @@ export default function ModulosPage() {
   }
 
   const doToggle = async (moduloKey: string, ativo: boolean) => {
-    setToggling(moduloKey)
     try {
       const updated = await moduloService.toggleModulo(moduloKey, ativo)
       setModulos((prev) => prev.map((m) => (m.modulo === moduloKey ? updated : m)))
       toast.success(`Modulo ${ativo ? 'ativado' : 'desativado'} com sucesso`)
     } catch {
       toast.error('Erro ao alterar modulo')
-    } finally {
-      setToggling(null)
     }
   }
 
