@@ -113,6 +113,9 @@ export const router = createBrowserRouter([
       { path: '/empresas', element: <EmpresaList /> },
       { path: '/empresas/novo', element: <EmpresaForm /> },
       { path: '/empresas/:id', element: <EmpresaForm /> },
+      { path: '/superadmin/empresas', element: <EmpresaList /> },
+      { path: '/superadmin/empresas/novo', element: <EmpresaForm /> },
+      { path: '/superadmin/empresas/:id', element: <EmpresaForm /> },
     ],
   },
 ])
